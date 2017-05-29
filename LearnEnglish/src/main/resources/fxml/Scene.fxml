@@ -71,7 +71,7 @@
       <content>
         <AnchorPane>
            <children>
-              <TextArea fx:id="textAreaLines" editable="false" AnchorPane.bottomAnchor="90" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15" />
+              <TextArea fx:id="textAreaLines" wrapText="true" editable="false" AnchorPane.bottomAnchor="90" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.topAnchor="15" />
               <TextField fx:id="textFildLine" onKeyPressed="#textFildLinedOnKeyPressed" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" />
               <ComboBox fx:id="comboBoxText" onAction="#comboBoxTextOnAction" minWidth="150.0" AnchorPane.bottomAnchor="15" AnchorPane.rightAnchor="15" />
            </children></AnchorPane>

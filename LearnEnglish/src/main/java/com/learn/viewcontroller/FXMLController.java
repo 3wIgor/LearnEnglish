@@ -86,6 +86,7 @@ public class FXMLController implements Initializable {
         textFildEnglishWord.setText("");
         textFildRussianWord.setText(lessonWords.carentWord());
         listViewRussianWords.getSelectionModel().select(lessonWords.carentWord());
+        listViewRussianWords.scrollTo(listViewRussianWords.getSelectionModel().getSelectedIndex());
     }
 
     @FXML
@@ -138,6 +139,7 @@ public class FXMLController implements Initializable {
                 if (!qTextLines.isEmpty()) {
                     qTextLines.remove();
                     textAreaLines.setText(textAreaLines.getText() + " " + qTextLines.peek());
+                    textAreaLines.selectRange(textAreaLines.getLength() - qTextLines.peek().length(), textAreaLines.getLength());
                     textFildLine.setText("");
                 } else {
                     textFildLine.setText("");
