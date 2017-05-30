@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
+
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -136,8 +138,8 @@ public class FXMLController implements Initializable {
         logger.debug("arg KeyEvent: {}", event);
         if (event.getCode() == KeyCode.ENTER) {
             if (textFildLine.getText().equalsIgnoreCase(qTextLines.peek())) {
+                qTextLines.remove();
                 if (!qTextLines.isEmpty()) {
-                    qTextLines.remove();
                     textAreaLines.setText(textAreaLines.getText() + " " + qTextLines.peek());
                     textAreaLines.selectRange(textAreaLines.getLength() - qTextLines.peek().length(), textAreaLines.getLength());
                     textFildLine.setText("");
@@ -183,5 +185,4 @@ public class FXMLController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
-    
 }
