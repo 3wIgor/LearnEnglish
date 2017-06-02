@@ -1,16 +1,10 @@
 package com.learn.daoimpl;
 
 import com.learn.dao.Repository;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+
+import java.io.*;
+import java.util.*;
+
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -22,12 +16,17 @@ public class RepositoryFromFiles implements Repository {
     private final List<String> textFiles = new LinkedList<>();
     private final String startLessonFileName = "Lesson ";
     private final String startTextFileName = "Text ";
-    private final int countLesson = 4;
 
     public RepositoryFromFiles() {
-        logger.debug("countLesson: {}", countLesson);
+        logger.debug(null);
+
+        int countLesson = 5;
+        int countText = 4;
+
         for (int i = 1; i <= countLesson; i++) {
             lessonFilses.add(startLessonFileName + i);
+        }
+        for (int i = 1; i <= countText; i++) {
             textFiles.add(startTextFileName + i);
         }
     }
