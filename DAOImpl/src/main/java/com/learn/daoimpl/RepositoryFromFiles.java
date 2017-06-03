@@ -21,7 +21,7 @@ public class RepositoryFromFiles implements Repository {
         logger.debug(null);
 
         int countLesson = 5;
-        int countText = 4;
+        int countText = 5;
 
         for (int i = 1; i <= countLesson; i++) {
             lessonFilses.add(startLessonFileName + i);
@@ -72,7 +72,10 @@ public class RepositoryFromFiles implements Repository {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 RepositoryFromFiles.class.getClassLoader().getResourceAsStream(dirLessons + textName), "UTF-8"))) {
             while (br.ready()) {
-                strs.add(br.readLine());
+                StringTokenizer p = new StringTokenizer(br.readLine(), ".");
+                while(p.hasMoreTokens()){
+                    strs.add(p.nextToken().trim() + ".");
+                }
             }
         } catch (IOException ex) {
             logger.error("Exception: ", ex);
