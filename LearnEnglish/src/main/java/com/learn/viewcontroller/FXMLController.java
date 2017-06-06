@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
-
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -28,16 +26,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FXMLController implements Initializable {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(FXMLController.class);
     private final Repository repository = new RepositoryFromFiles();
     private final LessonWords lessonWords = new LessonWords(repository);
     private final Queue<String> qTextLines = new LinkedList<>();
     private final Popup popup = new Popup();
+
     {
         popup.setAutoHide(true);
     }
-    
+
     @FXML
     private TextField textFildEnglishWord;
     @FXML
@@ -58,7 +57,7 @@ public class FXMLController implements Initializable {
     private TextField textFildLine;
     @FXML
     private TabPane tabPane;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         logger.debug("args url: {} ResourceBundle: {}", new Object[]{url, rb});
@@ -74,7 +73,7 @@ public class FXMLController implements Initializable {
             comboBoxTextOnAction();
         }
     }
-    
+
     private void startLessonWord() {
         logger.debug(null);
         textFildEnglishWord.setEditable(true);
@@ -96,7 +95,9 @@ public class FXMLController implements Initializable {
         logger.debug("arg KeyEvent: {}", event);
         if (event.getCode() == KeyCode.ENTER) {
             if (lessonWords.ckeckWord(textFildEnglishWord.getText())) {
-                if(popup.isShowing()) popup.hide();
+                if (popup.isShowing()) {
+                    popup.hide();
+                }
                 if (lessonWords.nextWord()) {
                     setWord();
                 } else {
@@ -110,11 +111,12 @@ public class FXMLController implements Initializable {
             } else {
                 textFildEnglishWord.setStyle("-fx-text-fill: red");
             }
+        } else if (event.getCode().equals(KeyCode.F1)) {
+            showTranslateText();
         } else {
             textFildEnglishWord.setStyle("-fx-text-fill: black");
         }
     }
-
 
     @FXML
     private void comboBoxLessonWordOnAction() {
@@ -131,7 +133,6 @@ public class FXMLController implements Initializable {
         lessonWords.refrechLesson();
         comboBoxLessonWordOnAction();
     }
-
 
     @FXML
     private void textFildLinedOnKeyPressed(KeyEvent event) {
@@ -159,6 +160,11 @@ public class FXMLController implements Initializable {
     @FXML
     private void buttonTransleteWordClick(MouseEvent evt) {
         logger.debug("arg MouseEvent: {}", evt);
+        showTranslateText();
+    }
+
+    private void showTranslateText() {
+        logger.debug(null);
         Text text = new Text(lessonWords.getEnglishWord(textFildRussianWord.getText()));
         popup.getContent().clear();
         popup.getContent().add(text);
