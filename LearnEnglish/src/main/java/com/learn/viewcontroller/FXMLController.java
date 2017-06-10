@@ -3,6 +3,7 @@ package com.learn.viewcontroller;
 import com.learn.dao.Repository;
 import com.learn.daoimpl.RepositoryFromFiles;
 import java.net.URL;
+import java.lang.Character;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -150,6 +151,8 @@ public class FXMLController implements Initializable {
                     textFildLine.setDisable(false);
                 }
             } else {
+                int index = findFirstMismatch(qTextLines.peek(), textFildLine.getText());
+                textFildLine.selectRange(index, ++index);
                 textFildLine.setStyle("-fx-text-fill: red");
             }
         } else {
@@ -190,5 +193,15 @@ public class FXMLController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+    
+    private int findFirstMismatch(String original, String other){
+        int lastIndex = original.length() < other.length() ? original.length() : other.length();
+        for (int i = 0; i < lastIndex; i++) {
+          if(Character.toLowerCase(original.charAt(i)) != Character.toLowerCase(other.charAt(i))){
+              return i;
+          }
+        }
+        return lastIndex;
     }
 }
