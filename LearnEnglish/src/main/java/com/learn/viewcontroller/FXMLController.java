@@ -148,7 +148,7 @@ public class FXMLController implements Initializable {
                 } else {
                     textFildLine.setText("");
                     showInfo("Finish");
-                    textFildLine.setDisable(false);
+                    textFildLine.setDisable(true);
                 }
             } else {
                 int index = findFirstMismatch(qTextLines.peek(), textFildLine.getText());
