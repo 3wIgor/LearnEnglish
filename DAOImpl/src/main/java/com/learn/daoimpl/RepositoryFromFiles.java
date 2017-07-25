@@ -20,8 +20,8 @@ public class RepositoryFromFiles implements Repository {
     public RepositoryFromFiles() {
         logger.debug(null);
 
-        int countLesson = 7;
-        int countText = 7;
+        int countLesson = 8;
+        int countText = 8;
 
         for (int i = 1; i <= countLesson; i++) {
             lessonFilses.add(startLessonFileName + i);
