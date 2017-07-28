@@ -87,8 +87,8 @@ public class FXMLController implements Initializable {
         logger.debug(null);
         textFildEnglishWord.setText("");
         textFildRussianWord.setText(lessonWords.carentWord());
+        listViewRussianWords.scrollTo(listViewRussianWords.getItems().lastIndexOf(lessonWords.carentWord()) - 1);
         listViewRussianWords.getSelectionModel().select(lessonWords.carentWord());
-        listViewRussianWords.scrollTo(listViewRussianWords.getSelectionModel().getSelectedIndex());
     }
 
     @FXML
@@ -96,6 +96,9 @@ public class FXMLController implements Initializable {
         logger.debug("arg KeyEvent: {}", event);
         if (event.getCode() == KeyCode.ENTER) {
             if (lessonWords.ckeckWord(textFildEnglishWord.getText())) {
+                int index = listViewRussianWords.getItems().lastIndexOf(lessonWords.carentWord());
+                String item = lessonWords.carentWord() + " - " + textFildEnglishWord.getText();
+                listViewRussianWords.getItems().set(index, item);
                 if (popup.isShowing()) {
                     popup.hide();
                 }
