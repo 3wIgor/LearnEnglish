@@ -72,10 +72,12 @@ public class RepositoryFromFiles implements Repository {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(
                 RepositoryFromFiles.class.getClassLoader().getResourceAsStream(dirLessons + textName), "UTF-8"))) {
             while (br.ready()) {
-                StringTokenizer p = new StringTokenizer(br.readLine(), ".");
+                String str = br.readLine();
+                strs.addAll(Arrays.asList(str.split(".?!")));
+                /*StringTokenizer p = new StringTokenizer(br.readLine(), ".");
                 while(p.hasMoreTokens()){
                     strs.add(p.nextToken().trim() + ".");
-                }
+                }*/
             }
         } catch (IOException ex) {
             logger.error("Exception: ", ex);
