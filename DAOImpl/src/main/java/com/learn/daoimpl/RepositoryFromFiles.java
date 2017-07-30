@@ -4,6 +4,8 @@ import com.learn.dao.Repository;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -73,8 +75,13 @@ public class RepositoryFromFiles implements Repository {
                 RepositoryFromFiles.class.getClassLoader().getResourceAsStream(dirLessons + textName), "UTF-8"))) {
             while (br.ready()) {
                 String str = br.readLine();
-                strs.addAll(Arrays.asList(str.split(".?!")));
-                /*StringTokenizer p = new StringTokenizer(br.readLine(), ".");
+                Pattern p = Pattern.compile("(\\w.*?[.?!]\"?)", Pattern.DOTALL);
+                Matcher m = p.matcher(str);
+                while (m.find()) {
+                    strs.add(m.group());
+                }
+                /*strs.addAll(Arrays.asList(str.split(".?!")));
+                StringTokenizer p = new StringTokenizer(br.readLine(), ".");
                 while(p.hasMoreTokens()){
                     strs.add(p.nextToken().trim() + ".");
                 }*/
