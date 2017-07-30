@@ -10,13 +10,7 @@ import java.util.Queue;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -42,6 +36,8 @@ public class FXMLController implements Initializable {
     private TextField textFildEnglishWord;
     @FXML
     private TextField textFildRussianWord;
+    @FXML
+    private Label labelCountWords;
     @FXML
     private ComboBox<String> comboBoxLessonWord;
     @FXML
@@ -81,6 +77,7 @@ public class FXMLController implements Initializable {
         setWord();
         buttonTransleteWord.setDisable(false);
         textFildEnglishWord.requestFocus();
+        labelCountWords.setText("Count word: " + lessonWords.getAllRusianWords().length);
     }
 
     private void setWord() {
@@ -175,7 +172,7 @@ public class FXMLController implements Initializable {
         popup.getContent().clear();
         popup.getContent().add(text);
         Window w = textFildEnglishWord.getScene().getWindow();
-        popup.show(textFildEnglishWord, w.getX() + 30, w.getY() + 150);
+        popup.show(textFildEnglishWord, w.getX() + 30, w.getY() + 185);
         textFildEnglishWord.requestFocus();
     }
 
